@@ -1,5 +1,6 @@
 package com.dropwizard.test;
 
+import com.dropwizard.test.exception.DataNotFoundExceptionMapper;
 import com.dropwizard.test.resources.InjectDemoResource;
 import com.dropwizard.test.resources.MessageResource;
 import com.dropwizard.test.resources.ProfileResource;
@@ -41,6 +42,8 @@ public class MyApplication extends Application<Configuration> {
 
         final InjectDemoResource injectDemoResource = new InjectDemoResource();
         environment.jersey().register(injectDemoResource);
+
+        environment.jersey().register(new DataNotFoundExceptionMapper());
     }
 
     /**

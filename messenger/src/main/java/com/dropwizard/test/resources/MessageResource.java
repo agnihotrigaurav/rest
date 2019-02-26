@@ -1,13 +1,12 @@
 package com.dropwizard.test.resources;
 
 import com.codahale.metrics.annotation.Timed;
+import com.dropwizard.test.exception.DataNotFoundException;
 import com.dropwizard.test.model.Message;
 import com.dropwizard.test.resources.bean.MessageFilterBean;
 import com.dropwizard.test.service.MessageService;
-import org.glassfish.jersey.server.Uri;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 
 import javax.ws.rs.*;
@@ -52,10 +51,11 @@ public class MessageResource {
         }
         return messageService.getAllMessages();
     }
+
     @GET
     @Timed
     @Path("/{messageId}")
-    public Message getMessage(@PathParam("messageId") long messageId) {
+    public Message getMessage(@PathParam("messageId") long messageId)  {
         return messageService.getMessage(messageId);
     }
 
